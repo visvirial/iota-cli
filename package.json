@@ -1,0 +1,15 @@
+{
+	"name": "iota-cli",
+	"version": "0.0.1",
+	"description": "IOTA command line tool.",
+	"author": "Vis Virial <visvirial@gmail.com>",
+	"keywords": ["IOTA", "Blockchain", "cryptocurrency"],
+	"license": "MIT",
+	"dependencies": {
+	},
+	"devDependencies": {
+	},
+	"bin": {
+		"iota": "iota.js"
+	}
+}
