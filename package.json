@@ -5,6 +5,10 @@
 	"author": "Vis Virial <visvirial@gmail.com>",
 	"keywords": ["IOTA", "Blockchain", "cryptocurrency"],
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/visvirial/iota-cli.git"
+	},
 	"dependencies": {
 	},
 	"devDependencies": {
