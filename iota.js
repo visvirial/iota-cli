@@ -127,6 +127,10 @@ var callApi = function(param, cb) {
 		body: body,
 	};
 	request(options, function(err, res, body) {
+		if(err) {
+			console.error(err);
+			throw new Error('Failed to connect to the IOTA server.');
+		}
 		cb(JSON.parse(body));
 	});
 };
