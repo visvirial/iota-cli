@@ -215,6 +215,6 @@ if(commands[cmd].lists.length == 1) {
 }
 
 callApi(param, function(data) {
-	console.log(data);
+	console.log(JSON.stringify(data, null, '\t'));
 });
 
