@@ -120,6 +120,39 @@ switch(command) {
 	case 'replayTransfer':
 		param.transaction = process.argv[idx++];
 		break;
+	// UNDOCUMENTED APIs.
+	case 'getAddresses':
+		param.publicKeys = [];
+		for(; idx<process.argv.length; idx++) {
+			params.publicKeys.push(process.argv[idx]);
+		}
+		break;
+	case 'getInclusionStats':
+		param.transactions = [];
+		param.tips = [];
+		for(; idx<process.argv.length; idx++) {
+			var arg = process.argv[idx].split('=');
+			if(arg.length != 2) {
+				throw new Error('argument is malformed.');
+			}
+			param[arg[0]].push(arg[1]);
+		}
+		break;
+	case 'getMilestone':
+		param.index = +process.argv[idx++];
+		break;
+	case 'getPublicKey':
+		param.privateKey = process.argv[idx++];
+		break;
+	case 'pushTransactions':
+		param.trytes = process.argv[idx++];
+		break;
+	case 'pullTransactions':
+		param.hashes = [];
+		for(; idx<process.argv.length; idx++) {
+			params.hashes.push(process.argv[idx]);
+		}
+		break;
 	default:
 }
 
