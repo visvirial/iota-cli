@@ -186,7 +186,8 @@ if(!commands[cmd]) {
 }
 
 // Process args.
-for(var a in commands[cmd].args) {
+for(var i in commands[cmd].args) {
+	var a = commands[cmd].args[i];
 	if(a[0] == '+') {
 		param[a.substr(1)] = +process.argv[idx++];
 	} else {
@@ -202,8 +203,8 @@ if(commands[cmd].lists.length == 1) {
 		params[a].push(process.argv[idx]);
 	}
 } else {
-	for(var a in commands[cmd].lists) {
-		param[a] = [];
+	for(var i in commands[cmd].lists) {
+		param[commands[cmd].lists[i]] = [];
 	}
 	for(; idx<process.argv.length; idx++) {
 		var arg = process.argv[idx].split('=');
