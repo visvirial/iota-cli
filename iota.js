@@ -200,7 +200,7 @@ if(commands[cmd].lists.length == 1) {
 	var a = commands[cmd].lists[0];
 	param[a] = [];
 	for(; idx<process.argv.length; idx++) {
-		params[a].push(process.argv[idx]);
+		param[a].push(process.argv[idx]);
 	}
 } else {
 	for(var i in commands[cmd].lists) {
