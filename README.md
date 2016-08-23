@@ -15,7 +15,21 @@ $ sudo npm install -g iota-cli
 Usage
 -----
 
-For full API list, please see https://iota.readme.io/docs.
+```
+$ iota help
+```
+
+to see available commands.
+
+```
+$ iota help COMMAND
+```
+
+to see argument list for that command.
+
+For more specific API details, please see https://iota.readme.io/docs (caution: there are many undocumented APIs).
+
+Sample usage:
 
 ```
 $ iota getNodeInfo
