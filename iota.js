@@ -85,7 +85,7 @@ const commands = {
 	},
 	prepareTransfers: {
 		args: ['seed', '+securityLevel'],
-		lists: ['transfers'],
+		lists: ['$transfers'],
 		description: 'Construct transaction data.',
 	},
 	pushTransactions: {
@@ -185,26 +185,36 @@ if(!commands[cmd]) {
 	process.exit(2);
 }
 
+var parseArg = function(arg, value) {
+	if(arg[0] == '+') {
+		// Parse as int.
+		return { key: arg.substr(1), value: +value };
+	} else if(arg[0] == '$') {
+		// Parse as JSON.
+		return { key: arg.substr(1), value: JSON.parse(value) };
+	}	else {
+		return { key: arg, value: value };
+	}
+}
+
 // Process args.
 for(var i in commands[cmd].args) {
-	var a = commands[cmd].args[i];
-	if(a[0] == '+') {
-		param[a.substr(1)] = +process.argv[idx++];
-	} else {
-		param[a] = process.argv[idx++];
-	}
+	var arg = parseArg(commands[cmd].args[i], process.argv[idx++]);
+	param[arg.key] = arg.value;
 }
 
 // Process lists.
 if(commands[cmd].lists.length == 1) {
-	var a = commands[cmd].lists[0];
-	param[a] = [];
+	var arg = parseArg(commands[cmd].lists[0], null);
+	param[arg.key] = [];
 	for(; idx<process.argv.length; idx++) {
-		param[a].push(process.argv[idx]);
+		var arg2 = parseArg(commands[cmd].lists[0], process.argv[idx]);
+		param[arg.key].push(arg2.value);
 	}
 } else {
 	for(var i in commands[cmd].lists) {
-		param[commands[cmd].lists[i]] = [];
+		var arg = parseArg(commands[cmd].lists[i], null);
+		param[arg.key] = [];
 	}
 	for(; idx<process.argv.length; idx++) {
 		var arg = process.argv[idx].split('=');
